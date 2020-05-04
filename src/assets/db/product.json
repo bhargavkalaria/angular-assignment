@@ -129,6 +129,117 @@
       "goodReads": "https://www.goodreads.com/book/show/43263542-nothing-ventured",
       "ratings": 4.25,
       "pages": 345
+    },
+    {
+      "id": 11,
+      "name": "3 Idiots",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/df/3_idiots_poster.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2012,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/K0eDlFX9GMc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.4,
+      "director": "Rajkumar Hirani",
+      "cast": "Aamir Khan,Madhavan,Kareena Kapoor,Boman Irani,Sharman Joshi"
+    },
+    {
+      "id": 12,
+      "name": "Uri: The Surgical Strike",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/URI_-_New_poster.jpg/220px-URI_-_New_poster.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2019,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/VVY3do673Zc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Aditya Dhar",
+      "cast": "Vicky Kaushal,Mohit Raina,Paresh Rawal,Yami Gautam"
+    },
+    {
+      "id": 13,
+      "name": "Commando: A One Man Army",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d4/Commando_%282013_film%29.jpg/220px-Commando_%282013_film%29.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2013,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/sLIs-4oM3m4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Dilip Ghosh",
+      "cast": "Vidyut Jamwal,Pooja Chopra,Jaideep Ahlawat"
+    },
+    {
+      "id": 14,
+      "name": "Holiday: A Soldier Is Never Off Duty",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b7/Holiday_-_A_Soldier_Is_Never_Off_Duty_%28poster%29.jpg/220px-Holiday_-_A_Soldier_Is_Never_Off_Duty_%28poster%29.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2014,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/VQMsEX22f04\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "A. R. Murugadoss",
+      "cast": "Akshay Kumar,Sonakshi Sinha,Freddy Daruwalak,Govinda "
+    },
+    {
+      "id": 15,
+      "name": "Tango Charlie",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Tango_charlie.jpg/220px-Tango_charlie.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2005,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7dZUkkKEJWY\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Mani Shankar",
+      "cast": "Ajay Devgn,Bobby Deol,Sudesh Berry,Sanjay Dutt"
+    },
+    {
+      "id": 16,
+      "name": "Zameen ",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Zameen_poster.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2003,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Bhx0H0gvriw\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Rohit Shetty",
+      "cast": "Ajay Devgn,Abhishek Bachchan,Bipasha Basu"
+    },
+    {
+      "id": 17,
+      "name": "Deewaar",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Deewaar-2004.jpg/220px-Deewaar-2004.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2003,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zWl-OsrpOoY\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Milan Luthria",
+      "cast": "Amitabh Bachchan,Sanjay Dutt,Akshaye Khanna,Piyush Mishra"
+    },
+    {
+      "id": 18,
+      "name": "LOC: Kargil",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/LOC_Kargil_poster.jpg/330px-LOC_Kargil_poster.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2003,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/5I4MrraEmwo\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "J. P. Dutta",
+      "cast": "Sanjay Dutt,Ajay Devgn,Nagarjuna,Saif Ali Khan,Sunil Shetty,Sanjay Kapoor,Akshaye Khanna,Abhishek Bachchan"
+    },
+    {
+      "id": 19,
+      "name": "Lakshya",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/66/Lakshya.jpg/220px-Lakshya.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2004,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/YoKGmYyljmc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Farhan Akhtar",
+      "cast": "Hrithik Roshan,Amitabh Bachchan,Preity Zinta,Sharad Kapoor"
+    },
+    {
+
+      "id": 20,
+      "name": "Kurukshetra",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/Kurukshetra_Film.jpg/220px-Kurukshetra_Film.jpg",
+      "genre": "Movie",
+      "yearOfRelease": 2008,
+      "trailer": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/z3atFr736Ps\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+      "mdbRatings": 4.9,
+      "director": "Major Ravi",
+      "cast": "Mohanlal,Siddique,Ravi Mariya,Anu Anand"
     }
   ]
 }
