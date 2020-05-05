@@ -51,3 +51,10 @@ body {
   background-color: #18C2C4;
   font-weight: 600;
 }
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px);
+}

@@ -7,6 +7,13 @@
     width: calc(25% - 20px);
     margin: 10px;
 
+    .card-image {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
     .product-title {
       -webkit-box-orient: vertical;
       display: block;
@@ -18,9 +25,6 @@
   }
 }
 
-.example-header-image {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-}
+
+
+

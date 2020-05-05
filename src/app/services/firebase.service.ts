@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firest
 export class FirebaseService {
   shoppingCartCollection: AngularFirestoreCollection<any>;
   productCollection: AngularFirestoreCollection<any>;
+  ipAddress;
+  wishListItem = new Subject();
 
   constructor(private afs: AngularFirestore) {
     this.shoppingCartCollection = afs.collection<any>('shopping-cart');
@@ -14,17 +17,10 @@ export class FirebaseService {
   }
 
   addItem(ip, productData) {
-    this.shoppingCartCollection.doc(ip).set({ip, productData}).then(result => {
-    }).catch(error => {
-      console.log(error);
-    });
+    this.shoppingCartCollection.doc(ip).set({ip, productData});
   }
 
   update(ip, productData) {
-    return this.afs.collection('shopping-cart').doc(ip).set(productData).then(result => {
-      console.log(result);
-    }).catch(error => {
-      console.log(error);
-    });
+    return this.afs.collection('shopping-cart').doc(ip).set({ip, productData});
   }
 }

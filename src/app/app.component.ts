@@ -17,9 +17,24 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getIpAddress();
+    this.subscribeForWishList();
+  }
+
+  getIpAddress() {
     this.ipService.getIPAddress().subscribe((result: any) => {
+      this.firebaseService.ipAddress = result.ip;
       this.firebaseService.productCollection.valueChanges().subscribe(product => {
-        this.firebaseService.addItem(result.ip, product[0].productList);
+        this.firebaseService.shoppingCartCollection.valueChanges().subscribe((res: any) => {
+          const tmp = res.every(d => {
+            if (d.ip === result.ip) {
+              return false;
+            }
+          });
+          if (tmp) {
+            this.firebaseService.addItem(result.ip, product[0].productList);
+          }
+        });
       });
     }, error => {
       this.snackBar.open('Something went wrong', '', {
@@ -27,6 +42,12 @@ export class AppComponent implements OnInit {
         duration: 3000,
         panelClass: ['snack-error']
       });
+    });
+  }
+
+  subscribeForWishList() {
+    this.firebaseService.wishListItem.subscribe(wishlist => {
+
     });
   }
 }

@@ -18,10 +18,11 @@
   <mat-sidenav-content>
     <header class="main-header">
       <div>
-        <span class="material-icons cursor-pointer" (click)="sidenav.toggle()">keyboard_arrow_right</span>
+        <span class="material-icons  cursor-pointer" (click)="sidenav.toggle()">keyboard_arrow_right</span>
       </div>
       <div>
-        <span class="material-icons cursor-pointer">add_shopping_cart</span>
+        <span class="material-icons cursor-pointer" matTooltip="WishList"
+              [matTooltipPosition]="'above'" matBadge="15" matBadgeColor="warn">add_shopping_cart</span>
       </div>
     </header>
     <div>
