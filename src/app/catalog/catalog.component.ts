@@ -54,6 +54,7 @@ export class CatalogComponent implements OnInit {
   addToWishList(product, index) {
     this.tempProduct[index].isAddedToWishList = true;
     this.firebaseService.update(this.firebaseService.ipAddress, this.tempProduct).then(result => {
+      this.firebaseService.wishListItem.next(this.tempProduct);
       this.snackBar.open(this.productList[index].name + ' added to wish list', '', {
         horizontalPosition: 'right',
         duration: 3000,

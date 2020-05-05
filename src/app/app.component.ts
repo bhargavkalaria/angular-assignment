@@ -10,6 +10,7 @@ import {FirebaseService} from './services/firebase.service';
 })
 export class AppComponent implements OnInit {
   opened: boolean;
+  wishListCount = 0;
 
   constructor(private ipService: IpService,
               private snackBar: MatSnackBar,
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
         this.firebaseService.shoppingCartCollection.valueChanges().subscribe((res: any) => {
           const tmp = res.every(d => {
             if (d.ip === result.ip) {
+              this.firebaseService.wishListItem.next(d.productData);
               return false;
             }
           });
@@ -46,8 +48,12 @@ export class AppComponent implements OnInit {
   }
 
   subscribeForWishList() {
-    this.firebaseService.wishListItem.subscribe(wishlist => {
-
+    this.firebaseService.wishListItem.subscribe((wishList: any) => {
+      wishList.forEach(d => {
+        if (d.isAddedToWishList) {
+          this.wishListCount += 1;
+        }
+      });
     });
   }
 }
