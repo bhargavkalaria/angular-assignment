@@ -8,10 +8,16 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
+import {IpService} from './services/ip.service';
+import {FirebaseService} from './services/firebase.service';
+import {FormsModule} from '@angular/forms';
+import {MaterialModule} from './material/material.module';
+import {CatalogComponent} from './catalog/catalog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -19,9 +25,14 @@ import {environment} from '../environments/environment';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'angularfs'),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    MaterialModule,
   ],
-  providers: [],
+  providers: [
+    IpService,
+    FirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

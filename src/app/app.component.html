@@ -1,2 +1,31 @@
-<button (click)="addItem()">Clik</button>
-<button (click)="update()">update</button>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+    <nav>
+      <ul class="nav-list">
+        <li routerLink="catalog" routerLinkActive="active-list">
+          <span>Catalog</span>
+        </li>
+        <li>
+          <span>Cart</span>
+        </li>
+        <li>
+          <span>Wish List</span>
+        </li>
+      </ul>
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <header class="main-header">
+      <div>
+        <span class="material-icons cursor-pointer" (click)="sidenav.toggle()">keyboard_arrow_right</span>
+      </div>
+      <div>
+        <span class="material-icons cursor-pointer">add_shopping_cart</span>
+      </div>
+    </header>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

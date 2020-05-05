@@ -1,49 +1,32 @@
-import {Component} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {IpService} from './services/ip.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FirebaseService} from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  public items;
-  private itemsCollection: AngularFirestoreCollection<any>;
+export class AppComponent implements OnInit {
+  opened: boolean;
 
-  constructor(private afs: AngularFirestore) {
-    this.itemsCollection = afs.collection<any>('shopping-cart');
-    this.items = this.itemsCollection.valueChanges().subscribe(res => {
-      console.log(res);
+  constructor(private ipService: IpService,
+              private snackBar: MatSnackBar,
+              private firebaseService: FirebaseService) {
+  }
+
+  ngOnInit(): void {
+    this.ipService.getIPAddress().subscribe((result: any) => {
+      this.firebaseService.productCollection.valueChanges().subscribe(product => {
+        this.firebaseService.addItem(result.ip, product[0].productList);
+      });
+    }, error => {
+      this.snackBar.open('Something went wrong', '', {
+        horizontalPosition: 'right',
+        duration: 3000,
+        panelClass: ['snack-error']
+      });
     });
-  }
-
-  addItem() {
-    // Persist a document id
-    const ip = '121.168.11.121';
-    const productList = [
-        {
-          id: 1,
-          name: 'bhargav'
-        },
-        {
-          id: 1,
-          name: 'bhargav'
-        },
-        {
-          id: 1,
-          name: 'bhargav'
-        }
-      ]
-    ;
-    const item = {ip, productList};
-    this.itemsCollection.doc(ip).set(item);
-    // this.itemsCollection.add(name);
-  }
-
-  update() {
-    return this.afs.collection('shopping-cart')
-      .doc('121.168.11.12/')
-      .set({id: 1, name: 'changes'});
   }
 }
