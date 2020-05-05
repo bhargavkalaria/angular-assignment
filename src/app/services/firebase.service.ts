@@ -10,6 +10,7 @@ export class FirebaseService {
   productCollection: AngularFirestoreCollection<any>;
   ipAddress;
   wishListItem = new Subject();
+  public wishListCount = 0;
 
   constructor(private afs: AngularFirestore) {
     this.shoppingCartCollection = afs.collection<any>('shopping-cart');
@@ -17,10 +18,15 @@ export class FirebaseService {
   }
 
   addItem(ip, productData) {
+    localStorage.setItem('ipConfig', ip);
     this.shoppingCartCollection.doc(ip).set({ip, productData});
   }
 
   update(ip, productData) {
     return this.afs.collection('shopping-cart').doc(ip).set({ip, productData});
+  }
+
+  getIp() {
+    return localStorage.getItem('ipConfig');
   }
 }

@@ -2,7 +2,7 @@
   <mat-sidenav #sidenav mode="over" [(opened)]="opened">
     <nav>
       <ul class="nav-list">
-        <li routerLink="catalog" routerLinkActive="active-list">
+        <li [routerLink]="'product'" routerLinkActive="active-list">
           <span>Catalog</span>
         </li>
         <li>
@@ -22,7 +22,7 @@
       </div>
       <div>
         <span class="material-icons cursor-pointer" matTooltip="WishList"
-              [matTooltipPosition]="'above'" matBadge="{{wishListCount}}" matBadgeColor="warn">add_shopping_cart</span>
+              [matTooltipPosition]="'above'" matBadge="{{firebaseService.wishListCount}}" matBadgeColor="warn">add_shopping_cart</span>
       </div>
     </header>
     <div>

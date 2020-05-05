@@ -13,11 +13,13 @@ import {FirebaseService} from './services/firebase.service';
 import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material/material.module';
 import {BookMovieDetailsComponent} from './book-movie-details/book-movie-details.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookMovieDetailsComponent
+    BookMovieDetailsComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

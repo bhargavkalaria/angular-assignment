@@ -10,11 +10,10 @@ import {FirebaseService} from './services/firebase.service';
 })
 export class AppComponent implements OnInit {
   opened: boolean;
-  wishListCount = 0;
 
   constructor(private ipService: IpService,
               private snackBar: MatSnackBar,
-              private firebaseService: FirebaseService) {
+              public firebaseService: FirebaseService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +33,7 @@ export class AppComponent implements OnInit {
             }
           });
           if (tmp) {
+            console.log('inside');
             this.firebaseService.addItem(result.ip, product[0].productList);
           }
         });
@@ -49,9 +49,10 @@ export class AppComponent implements OnInit {
 
   subscribeForWishList() {
     this.firebaseService.wishListItem.subscribe((wishList: any) => {
+      this.firebaseService.wishListCount = 0;
       wishList.forEach(d => {
         if (d.isAddedToWishList) {
-          this.wishListCount += 1;
+          this.firebaseService.wishListCount += 1;
         }
       });
     });

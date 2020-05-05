@@ -1,1 +1,50 @@
-<p>book-movie-details works!</p>
+<ng-template [ngIf]="!isLoading">
+  <div class="breadcrumb">
+    <span class="material-icons cursor-pointer" [routerLink]="['/product']">home</span>
+    <span class="ml-5 mr-5"> ></span>
+    <span class="cursor-pointer" [routerLink]="['/product']">{{product.genre === 'Book' ? ' Book ' : ' Movie '}}</span>
+    <span class="ml-5 mr-5"> ></span>
+    <span> {{product.name}}</span>
+  </div>
+  <div class="product-detail">
+    <div class="product-detail--left">
+      <ng-template [ngIf]="product.genre === 'Movie'">
+        <iframe width="100%" height="500px" [src]="product.trailer | safe"></iframe>
+      </ng-template>
+      <ng-template [ngIf]="product.genre === 'Book'">
+        <img [src]="product.image" class="product-image">
+      </ng-template>
+      <div class="cart-wishlist-button">
+        <button mat-raised-button
+                [disabled]="product.isaddedTocart" (click)="addToCart()">{{product.isaddedTocart ? 'Added to cart' : 'Add to Cart'}}</button>
+        <button class="ml-10" mat-raised-button color="primary" (click)="addToWishList()"
+                [disabled]="product.isAddedToWishList">{{product.isAddedToWishList ? 'Added to wish list' : 'Add to WishList'}}
+        </button>
+      </div>
+    </div>
+    <div class="product-detail--right">
+      <h1><b>{{product.name}}</b></h1>
+      <mat-chip-list>
+        <mat-chip>{{product.genre === 'Book' ? product.ratings : product.mdbRatings}}</mat-chip>
+        <mat-chip *ngIf="product.genre === 'Book'" (click)="openDialog(preview)">Preview</mat-chip>
+      </mat-chip-list>
+      <h1 class="mt-10">{{product.amount | currency:"₹"}}</h1>
+      <h4 *ngIf="product.director"><b>Director : </b>{{product.director}}</h4>
+      <h4 *ngIf="product.writer"><b>Writer : </b>{{product.writer}}</h4>
+      <h4 *ngIf="product.goodReads"><a target="_blank" [href]="product.goodReads">Good Reads Link</a></h4>
+      <h4 *ngIf="product.cast"><b>Cast : </b>{{product.cast}}</h4>
+      <h4><b>Generic Name : </b>{{product.genre}}</h4>
+      <h4><b>Year of release : </b>{{product.yearOfRelease}}</h4>
+    </div>
+  </div>
+</ng-template>
+<ng-template [ngIf]="isLoading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+<ng-template #preview>
+  <div [innerHTML]="product.preview">
+
+  </div>
+</ng-template>

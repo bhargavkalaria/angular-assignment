@@ -19,7 +19,7 @@ export class CatalogComponent implements OnInit {
   tempProduct;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
-              private firebaseService: FirebaseService,
+              public firebaseService: FirebaseService,
               private httpClient: HttpClient,
               private snackBar: MatSnackBar) {
   }
@@ -27,10 +27,12 @@ export class CatalogComponent implements OnInit {
   ngOnInit(): void {
     this.firebaseService.shoppingCartCollection.valueChanges().subscribe((result: any) => {
       let data;
-      result.forEach(d => {
-        if (d.ip === this.firebaseService.ipAddress) {
+      result.find(d => {
+        if (d.ip === this.firebaseService.getIp()) {
           data = d;
           this.tempProduct = d.productData;
+        } else {
+          return false;
         }
       });
       if (data) {
@@ -52,14 +54,19 @@ export class CatalogComponent implements OnInit {
   }
 
   addToWishList(product, index) {
-    this.tempProduct[index].isAddedToWishList = true;
+    this.tempProduct.find(data => {
+      if (data.id === product.id) {
+        data.isAddedToWishList = true;
+      }
+    });
+    this.snackBar.open(this.productList[index].name + ' added to wish list', '', {
+      horizontalPosition: 'right',
+      duration: 3000,
+      panelClass: ['snack-success']
+    });
+    this.firebaseService.wishListCount = 0;
     this.firebaseService.update(this.firebaseService.ipAddress, this.tempProduct).then(result => {
       this.firebaseService.wishListItem.next(this.tempProduct);
-      this.snackBar.open(this.productList[index].name + ' added to wish list', '', {
-        horizontalPosition: 'right',
-        duration: 3000,
-        panelClass: ['snack-success']
-      });
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',
@@ -70,13 +77,17 @@ export class CatalogComponent implements OnInit {
   }
 
   addToCart(product, index) {
-    this.tempProduct[index].isaddedTocart = true;
+    this.tempProduct.find(data => {
+      if (data.id === product.id) {
+        data.isaddedTocart = true;
+      }
+    });
+    this.snackBar.open(this.productList[index].name + ' added to cart', '', {
+      horizontalPosition: 'right',
+      duration: 3000,
+      panelClass: ['snack-success']
+    });
     this.firebaseService.update(this.firebaseService.ipAddress, this.tempProduct).then(result => {
-      this.snackBar.open(this.productList[index].name + ' added to cart', '', {
-        horizontalPosition: 'right',
-        duration: 3000,
-        panelClass: ['snack-success']
-      });
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',

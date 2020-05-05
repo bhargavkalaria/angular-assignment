@@ -8,6 +8,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -20,7 +23,10 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatGridListModule,
+    MatChipsModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {
