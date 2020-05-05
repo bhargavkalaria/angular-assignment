@@ -1,7 +1,7 @@
 <ng-template [ngIf]="!isLoading">
   <div class="product-container">
     <ng-container *ngFor="let product of productList;let i = index">
-      <mat-card class="product-card">
+      <mat-card class="product-card" routerLink="../product/{{product.id}}">
         <mat-card-header>
           <div mat-card-avatar>
             <img class="card-image" [src]="product.image">

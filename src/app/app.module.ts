@@ -12,12 +12,12 @@ import {IpService} from './services/ip.service';
 import {FirebaseService} from './services/firebase.service';
 import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material/material.module';
-import {CatalogComponent} from './catalog/catalog.component';
+import {BookMovieDetailsComponent} from './book-movie-details/book-movie-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CatalogComponent
+    BookMovieDetailsComponent
   ],
   imports: [
     BrowserModule,

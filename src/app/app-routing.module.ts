@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {CatalogComponent} from './catalog/catalog.component';
+import {BookMovieDetailsComponent} from './book-movie-details/book-movie-details.component';
 
 
 const routes: Routes = [
@@ -11,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'catalog',
-    component: CatalogComponent
+    loadChildren: () => import('./catalog/catalog.module').then(m => m.CatalogModule)
+  },
+  {
+    path: 'product/:id',
+    component: BookMovieDetailsComponent
   }
 ];
 
