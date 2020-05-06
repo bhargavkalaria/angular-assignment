@@ -19,6 +19,10 @@ const routes: Routes = [
     component: BookMovieDetailsComponent
   },
   {
+    path: 'wish-list',
+    loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule)
+  },
+  {
     path: '**',
     component: CatalogComponent
   }

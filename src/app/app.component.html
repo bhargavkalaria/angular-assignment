@@ -8,7 +8,7 @@
         <li>
           <span>Cart</span>
         </li>
-        <li>
+        <li [routerLink]="['/wish-list']" routerLinkActive="active-list">
           <span>Wish List</span>
         </li>
       </ul>
@@ -21,7 +21,7 @@
         <span class="material-icons  cursor-pointer" (click)="sidenav.toggle()">keyboard_arrow_right</span>
       </div>
       <div>
-        <span class="material-icons cursor-pointer" matTooltip="WishList"
+        <span class="material-icons cursor-pointer" [routerLink]="['/wish-list']" matTooltip="WishList"
               [matTooltipPosition]="'above'" matBadge="{{firebaseService.wishListCount}}" matBadgeColor="warn">add_shopping_cart</span>
       </div>
     </header>

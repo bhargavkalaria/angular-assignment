@@ -27,15 +27,21 @@ export class AppComponent implements OnInit {
       this.firebaseService.productCollection.valueChanges().subscribe(product => {
         this.firebaseService.shoppingCartCollection.valueChanges().subscribe((res: any) => {
           const tmp = res.every(d => {
-            if (this.firebaseService.getIp()) {
-              return true;
-            } else if (d.ip === result.ip) {
-              this.firebaseService.wishListItem.next(d.productData);
-              return true;
-            } else {
-              return false;
+              if (this.firebaseService.getIp()) {
+                if (d.ip === this.firebaseService.getIp()) {
+                  this.firebaseService.wishListItem.next(d.productData);
+                }
+                return true;
+              } else if (d.ip === result.ip) {
+                if (d.ip === this.firebaseService.getIp()) {
+                  this.firebaseService.wishListItem.next(d.productData);
+                }
+                return true;
+              } else {
+                return false;
+              }
             }
-          });
+          );
           if (!tmp) {
             this.firebaseService.addItem(result.ip, product[0].productList);
           }
@@ -55,7 +61,7 @@ export class AppComponent implements OnInit {
       this.firebaseService.wishListCount = 0;
       wishList.forEach(d => {
         if (d.isAddedToWishList) {
-          this.firebaseService.wishListCount += 1;
+          this.firebaseService.wishListCount = this.firebaseService.wishListCount + 1;
         }
       });
     });

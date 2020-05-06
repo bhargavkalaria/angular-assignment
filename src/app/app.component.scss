@@ -11,11 +11,12 @@
     cursor: pointer;
     padding: 10px 20px;
     margin: 5px 0;
-
+    outline: none;
   }
 
   .active-list {
-    background-color: green;
+    color: white;
+    background-color: #3f51b5;
   }
 
   mat-sidenav {

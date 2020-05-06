@@ -20,7 +20,6 @@ export class CatalogComponent implements OnInit {
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
               public firebaseService: FirebaseService,
-              private httpClient: HttpClient,
               private snackBar: MatSnackBar) {
   }
 
@@ -65,7 +64,7 @@ export class CatalogComponent implements OnInit {
       panelClass: ['snack-success']
     });
     this.firebaseService.wishListCount = 0;
-    this.firebaseService.update(this.firebaseService.ipAddress, this.tempProduct).then(result => {
+    this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then(result => {
       this.firebaseService.wishListItem.next(this.tempProduct);
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
@@ -87,7 +86,7 @@ export class CatalogComponent implements OnInit {
       duration: 3000,
       panelClass: ['snack-success']
     });
-    this.firebaseService.update(this.firebaseService.ipAddress, this.tempProduct).then(result => {
+    this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then(result => {
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',

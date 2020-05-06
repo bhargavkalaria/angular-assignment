@@ -69,7 +69,7 @@ export class BookMovieDetailsComponent implements OnInit {
       duration: 3000,
       panelClass: ['snack-success']
     });
-    this.firebaseService.update(this.firebaseService.ipAddress, this.allProduct).then(result => {
+    this.firebaseService.update(this.firebaseService.getIp(), this.allProduct).then(result => {
       this.firebaseService.wishListItem.next(this.allProduct);
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
@@ -91,7 +91,7 @@ export class BookMovieDetailsComponent implements OnInit {
       duration: 3000,
       panelClass: ['snack-success']
     });
-    this.firebaseService.update(this.firebaseService.ipAddress, this.allProduct).then(result => {
+    this.firebaseService.update(this.firebaseService.getIp(), this.allProduct).then(result => {
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',
