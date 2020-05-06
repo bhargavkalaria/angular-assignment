@@ -14,12 +14,14 @@ import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material/material.module';
 import {BookMovieDetailsComponent} from './book-movie-details/book-movie-details.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookMovieDetailsComponent,
-    SafePipe
+    SafePipe,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

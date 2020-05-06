@@ -11,8 +11,7 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  userDetails: FormGroup;
   products = [];
   tmpData;
   value = 1;
@@ -29,11 +28,15 @@ export class CartComponent implements OnInit {
               private snackBar: MatSnackBar,
               private firebaseService: FirebaseService,
               private dialog: MatDialog) {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.userDetails = this.formBuilder.group({
+      username: ['', Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      country: ['', Validators.required],
+      upiId: ['', Validators.required],
     });
   }
 
@@ -141,5 +144,9 @@ export class CartComponent implements OnInit {
         panelClass: ['snack-error']
       });
     });
+  }
+
+  saveDetails() {
+    console.log(this.userDetails.valid);
   }
 }
