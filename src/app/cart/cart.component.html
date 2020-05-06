@@ -1,0 +1,109 @@
+<ng-template [ngIf]="!isLoading">
+
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step>
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <div class="cart">
+        <div class="cart-left">
+          <ng-container *ngFor="let product of products">
+            <div class="cart-details">
+              <div class="cart-details--left">
+                <img [src]="product.image" class="cart-image">
+                <mat-form-field class="counter">
+                  <button
+                    mat-button
+                    mat-icon-button
+                    matPrefix
+                    aria-label="Remove"
+                    (click)="incrementValue(-step,product)"
+                    [disabled]="shouldDisableDecrement(value,product)">
+                    <span class="material-icons">remove</span>
+                  </button>
+                  <input matInput type="text" class="input-size" [(ngModel)]="product.buyedItems" [readonly]="true"/>
+                  <button
+                    mat-button
+                    mat-icon-button
+                    matSuffix
+                    aria-label="Add"
+                    (click)="incrementValue(step,product)"
+                    [disabled]="shouldDisableIncrement(value,product)">
+                    <span class="material-icons">add</span>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="ml-10">
+                <h1>{{product.name}}</h1>
+                <h4>{{product.amount * product.buyedItems | currency:'₹'}}</h4>
+                <button mat-raised-button color="warn" (click)="removeFromCart(product,remove)">Remove From cart
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="cart-right">
+          <div class="cart-right--header">
+            PRICE DETAILS
+          </div>
+          <div class="cart-right--body">
+            <div class="body-price-details">
+              <div class="mt-5 mb-5">
+                Price ({{products.length}} items)
+              </div>
+              <div>{{totalAmount | currency :'₹'}}</div>
+            </div>
+            <div class="body-price-details border-bottom">
+              <div class="mt-5 mb-5">
+                Discount
+              </div>
+              <div>0%</div>
+            </div>
+            <div class="body-price-details">
+              <div class="mt-5 mb-5">
+                Total amount
+              </div>
+              <div>{{totalAmount | currency :'₹'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <ng-template #remove>
+    <h2 mat-dialog-title>Remove from wish list?</h2>
+    <mat-dialog-content class="mat-typography">
+      <h3>Are you sure do you want to remove {{removeProductName}}</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>Remove</button>
+    </mat-dialog-actions>
+  </ng-template>
+</ng-template>
+<ng-template [ngIf]="isLoading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

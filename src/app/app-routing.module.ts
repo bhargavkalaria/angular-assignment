@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./wish-list/wish-list.module').then(m => m.WishListModule)
   },
   {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
+  },
+  {
     path: '**',
     component: CatalogComponent
   }

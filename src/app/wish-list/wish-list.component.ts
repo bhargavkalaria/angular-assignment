@@ -17,7 +17,7 @@ export class WishListComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   isLoading = true;
   dialogRef;
-
+  removeProductName;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -73,6 +73,7 @@ export class WishListComponent implements OnInit {
   }
 
   removeFromWishList(index, templateRef) {
+    this.removeProductName = index.name;
     this.dialogRef = this.dialog.open(templateRef, {
       width: '500px'
     });
