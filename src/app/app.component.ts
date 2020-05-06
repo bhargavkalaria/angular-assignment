@@ -27,13 +27,16 @@ export class AppComponent implements OnInit {
       this.firebaseService.productCollection.valueChanges().subscribe(product => {
         this.firebaseService.shoppingCartCollection.valueChanges().subscribe((res: any) => {
           const tmp = res.every(d => {
-            if (d.ip === result.ip) {
+            if (this.firebaseService.getIp()) {
+              return true;
+            } else if (d.ip === result.ip) {
               this.firebaseService.wishListItem.next(d.productData);
+              return true;
+            } else {
               return false;
             }
           });
-          if (tmp) {
-            console.log('inside');
+          if (!tmp) {
             this.firebaseService.addItem(result.ip, product[0].productList);
           }
         });
