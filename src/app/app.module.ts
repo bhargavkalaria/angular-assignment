@@ -21,7 +21,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AppComponent,
     BookMovieDetailsComponent,
     SafePipe,
-    CheckoutComponent
   ],
   imports: [
     BrowserModule,

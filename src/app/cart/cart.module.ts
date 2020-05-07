@@ -4,9 +4,13 @@ import {CartComponent} from './cart.component';
 import {MaterialModule} from '../material/material.module';
 import {CartRoutingModule} from './cart-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CheckoutComponent} from '../checkout/checkout.component';
 
 @NgModule({
-  declarations: [CartComponent],
+  declarations: [
+    CartComponent,
+    CheckoutComponent
+  ],
   imports: [
     CommonModule,
     CartRoutingModule,

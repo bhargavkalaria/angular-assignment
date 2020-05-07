@@ -1,1 +1,58 @@
-<p>checkout works!</p>
+<ng-template [ngIf]="!isLoading">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Product details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="checkout">
+        <div class="checkout-header">
+          <div class="checkout-header--name"><b>Name</b></div>
+          <div class="checkout-header--items"><b>Quantity</b></div>
+          <div class="checkout-header--price"><b>Price</b></div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="checkout-header" *ngFor="let data of products">
+          <div class="checkout-header--name">{{data.name}}</div>
+          <div class="checkout-header--items">{{data.buyedItems}}</div>
+          <div class="checkout-header--price">{{(data.amount * data.buyedItems)  | currency :'₹'}}</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="checkout-header">
+          <div class="checkout-header--name"><b>Total</b></div>
+          <div class="checkout-header--items"><b>Items ({{products.length}})</b></div>
+          <div class="checkout-header--price"><b>{{totalAmount | currency :'₹'}}</b></div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          User details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item role="listitem"><b>Name : </b>{{checkoutService.userInfo?.username}}</mat-list-item>
+        <mat-list-item role="listitem"><b>Address : </b>{{checkoutService.userInfo?.address}}</mat-list-item>
+        <mat-list-item role="listitem"><b>Payment ID : </b>{{checkoutService.userInfo?.upiId}}</mat-list-item>
+        <mat-list-item role="listitem">
+          <mat-form-field class="example-full-width">
+            <mat-label>Enter OTP</mat-label>
+            <input matInput maxlength="6" placeholder="Ex. 94105" [(ngModel)]="otpValue">
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <button mat-raised-button color="primary" [disabled]="+otpValue !== 778899" (click)="checkout()">Checkout
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>
+
+<ng-template [ngIf]="isLoading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

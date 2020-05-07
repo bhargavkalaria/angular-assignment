@@ -17,6 +17,9 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -39,6 +42,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatFormFieldModule,
     MatInputModule,
     MatStepperModule,
+    MatExpansionModule,
+    MatDividerModule,
+    MatListModule
   ]
 })
 export class MaterialModule {

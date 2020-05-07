@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {FirebaseService} from '../services/firebase.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
+import {CheckoutService} from '../services/checkout.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -27,7 +29,9 @@ export class CartComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private snackBar: MatSnackBar,
               private firebaseService: FirebaseService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private checkoutService: CheckoutService,
+              private router: Router) {
     this.userDetails = this.formBuilder.group({
       username: ['', Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -147,6 +151,11 @@ export class CartComponent implements OnInit {
   }
 
   saveDetails() {
-    console.log(this.userDetails.valid);
+    if (this.userDetails.valid) {
+      this.checkoutService.isValid = this.userDetails.valid;
+      this.checkoutService.userInfo = this.userDetails.value;
+      this.router.navigate(['cart', 'checkout']);
+      this.firebaseService.update(this.firebaseService.getIp(), this.tmpData);
+    }
   }
 }

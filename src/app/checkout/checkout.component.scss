@@ -1,0 +1,19 @@
+.checkout {
+  .checkout-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    .checkout-header--name {
+      width: 500px;
+    }
+
+    .checkout-header--items {
+      width: 100px
+    }
+
+    .checkout-header--price {
+      width: 100px
+    }
+  }
+}
