@@ -9,7 +9,7 @@ import {FirebaseService} from './services/firebase.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  opened: boolean;
+  opened = true;
 
   constructor(private ipService: IpService,
               private snackBar: MatSnackBar,

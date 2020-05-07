@@ -1,5 +1,6 @@
-<mat-sidenav-container class="main-container">
-  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+<mat-sidenav-container class="main-container" hasBackdrop="false">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <span class="material-icons logo">shopping_cart</span>
     <nav>
       <ul class="nav-list">
         <li [routerLink]="'product'" routerLinkActive="active-list">
@@ -18,14 +19,15 @@
   <mat-sidenav-content>
     <header class="main-header">
       <div>
-        <span class="material-icons  cursor-pointer" (click)="sidenav.toggle()">keyboard_arrow_right</span>
+        <span class="material-icons  cursor-pointer"
+              [ngClass]="{'rotate-reverse-180':opened,'rotate-forward-0':!opened}" (click)="sidenav.toggle()">keyboard_arrow_right</span>
       </div>
       <div>
         <span class="material-icons cursor-pointer" [routerLink]="['/wish-list']" matTooltip="WishList"
               [matTooltipPosition]="'above'" matBadge="{{firebaseService.wishListCount}}" matBadgeColor="warn">add_shopping_cart</span>
       </div>
     </header>
-    <div>
+    <div class="p-20">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
