@@ -40,4 +40,9 @@
     align-items: center;
     padding: 0 20px;
   }
+
+  .main-body {
+    height: calc(100vh - 125px);
+    overflow: auto;
+  }
 }

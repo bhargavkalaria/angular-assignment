@@ -15,10 +15,10 @@
         <img [src]="product.image" class="product-image">
       </ng-template>
       <div class="cart-wishlist-button">
-        <button mat-raised-button
-                [disabled]="product.isaddedTocart" (click)="addToCart()">{{product.isaddedTocart ? 'Added to cart' : 'Add to Cart'}}</button>
-        <button class="ml-10" mat-raised-button color="primary" (click)="addToWishList()"
-                [disabled]="product.isAddedToWishList">{{product.isAddedToWishList ? 'Added to wish list' : 'Add to WishList'}}
+        <button mat-raised-button color="primary"
+                (click)="addToCart()">{{product.isaddedTocart ? 'Remove from cart' : 'Add to cart'}}</button>
+        <button class="ml-10" mat-raised-button color="warn"
+                (click)="addToWishList()">{{product.isAddedToWishList ? 'Remove from wishList' : 'Add to wish List'}}
         </button>
       </div>
     </div>
@@ -33,6 +33,7 @@
       <h4 *ngIf="product.writer"><b>Writer : </b>{{product.writer}}</h4>
       <h4 *ngIf="product.goodReads"><a target="_blank" [href]="product.goodReads">Good Reads Link</a></h4>
       <h4 *ngIf="product.cast"><b>Cast : </b>{{product.cast}}</h4>
+      <h4 *ngIf="product.pages"><b>Pages : </b>{{product.pages}}</h4>
       <h4><b>Generic Name : </b>{{product.genre}}</h4>
       <h4><b>Year of release : </b>{{product.yearOfRelease}}</h4>
     </div>

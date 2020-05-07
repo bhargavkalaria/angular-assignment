@@ -61,15 +61,17 @@ export class BookMovieDetailsComponent implements OnInit {
   addToWishList() {
     this.allProduct.find(d => {
       if (d.id === this.id) {
-        d.isAddedToWishList = true;
+        d.isAddedToWishList = !d.isAddedToWishList;
       }
     });
-    this.snackBar.open(this.product.name + ' added to wish list', '', {
-      horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: ['snack-success']
-    });
     this.firebaseService.update(this.firebaseService.getIp(), this.allProduct).then(result => {
+      this.snackBar.open(this.product.isAddedToWishList ?
+        this.product.name + ' added to wish list' : this.product.name + ' remove from wish list'
+        , '', {
+          horizontalPosition: 'right',
+          duration: 3000,
+          panelClass: ['snack-success']
+        });
       this.firebaseService.wishListItem.next(this.allProduct);
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
@@ -83,15 +85,16 @@ export class BookMovieDetailsComponent implements OnInit {
   addToCart() {
     this.allProduct.find(d => {
       if (d.id === this.id) {
-        d.isaddedTocart = true;
+        d.isaddedTocart = !d.isaddedTocart;
       }
     });
-    this.snackBar.open(this.product.name + ' added to cart', '', {
-      horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: ['snack-success']
-    });
     this.firebaseService.update(this.firebaseService.getIp(), this.allProduct).then(result => {
+      this.snackBar.open(this.product.isaddedTocart ?
+        this.product.name + ' added to cart' : this.product.name + ' remove from the cart', '', {
+        horizontalPosition: 'right',
+        duration: 3000,
+        panelClass: ['snack-success']
+      });
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',

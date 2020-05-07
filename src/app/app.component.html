@@ -6,11 +6,11 @@
         <li [routerLink]="'product'" routerLinkActive="active-list">
           <span>Catalog</span>
         </li>
-        <li [routerLink]="'cart'" routerLinkActive="active-list">
-          <span>Cart</span>
-        </li>
         <li [routerLink]="['wish-list']" routerLinkActive="active-list">
           <span>Wish List</span>
+        </li>
+        <li [routerLink]="'cart'" routerLinkActive="active-list">
+          <span>Cart</span>
         </li>
       </ul>
     </nav>
@@ -27,7 +27,7 @@
               [matTooltipPosition]="'above'" matBadge="{{firebaseService.wishListCount}}" matBadgeColor="warn">add_shopping_cart</span>
       </div>
     </header>
-    <div class="p-20">
+    <div class="p-20 main-body">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

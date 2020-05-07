@@ -55,16 +55,17 @@ export class CatalogComponent implements OnInit {
   addToWishList(product, index) {
     this.tempProduct.find(data => {
       if (data.id === product.id) {
-        data.isAddedToWishList = true;
+        data.isAddedToWishList = !data.isAddedToWishList;
       }
     });
-    this.snackBar.open(this.productList[index].name + ' added to wish list', '', {
-      horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: ['snack-success']
-    });
-    this.firebaseService.wishListCount = 0;
+    this.isLoading = true;
     this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then(result => {
+      this.isLoading = false;
+      /*  this.snackBar.open(this.productList[index].name + ' added to wish list', '', {
+          horizontalPosition: 'right',
+          duration: 3000,
+          panelClass: ['snack-success']
+        });*/
       this.firebaseService.wishListItem.next(this.tempProduct);
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
@@ -78,15 +79,19 @@ export class CatalogComponent implements OnInit {
   addToCart(product, index) {
     this.tempProduct.find(data => {
       if (data.id === product.id) {
-        data.isaddedTocart = true;
+        data.isaddedTocart = !data.isaddedTocart;
       }
     });
-    this.snackBar.open(this.productList[index].name + ' added to cart', '', {
-      horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: ['snack-success']
-    });
-    this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then(result => {
+    this.isLoading = true;
+    this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then((result: any) => {
+      if (result) {
+        this.isLoading = false;
+      }
+      /*this.snackBar.open(this.productList[index].name + ' added to cart', '', {
+        horizontalPosition: 'right',
+        duration: 3000,
+        panelClass: ['snack-success']
+      });*/
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',
