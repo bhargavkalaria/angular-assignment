@@ -1,60 +1,68 @@
+<ng-template [ngIf]="!isLoading">
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
-  <ng-content></ng-content>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+    <ng-content></ng-content>
+  </mat-form-field>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="genre">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Genre</th>
-      <td mat-cell *matCellDef="let row"> {{row.genre}}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
-      <td mat-cell *matCellDef="let row" routerLink="../product/{{row.id}}" class="cursor-pointer"> {{row.name}} </td>
-    </ng-container>
-    <ng-container matColumnDef="writer">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Writer/Director</th>
-      <td mat-cell *matCellDef="let row"> {{row.genre === 'Book' ? row.writer : row.director}} </td>
-    </ng-container>
-    <ng-container matColumnDef="ratings">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ratings</th>
-      <td mat-cell *matCellDef="let row"> {{row.genre === 'Book' ? row.ratings : row.mdbRatings}} </td>
-    </ng-container>
-    <ng-container matColumnDef="isaddedTocart">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Add</th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-raised-button
-                [disabled]="row.isaddedTocart"
-                (click)="addToCart(row)">{{row.isaddedTocart ? 'Added to cart' : 'Add to cart'}} </button>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="isAddedToWishList">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Remove</th>
-      <td mat-cell *matCellDef="let row">
-        <button mat-raised-button matTooltip="Remove from wish list"
-                [matTooltipPosition]="'above'"
-                (click)="removeFromWishList(row,remove)">{{row.isAddedToWishList ? 'Remove' : ''}} </button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    </tr>
-  </table>
+  <div>
+    <table class="background-transparent" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="genre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Genre</th>
+        <td mat-cell *matCellDef="let row"> {{row.genre}}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+        <td mat-cell *matCellDef="let row" routerLink="../product/{{row.id}}" class="cursor-pointer"> {{row.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="writer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Writer/Director</th>
+        <td mat-cell *matCellDef="let row"> {{row.genre === 'Book' ? row.writer : row.director}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ratings">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ratings</th>
+        <td mat-cell *matCellDef="let row"> {{row.genre === 'Book' ? row.ratings : row.mdbRatings}} </td>
+      </ng-container>
+      <ng-container matColumnDef="isaddedTocart">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Add</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-button [color]="row.isaddedTocart ? 'warn':'primary'"
+                  (click)="addToCart(row)">{{row.isaddedTocart ? 'Remove' : 'Add to cart'}} </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="isAddedToWishList">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Remove</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-button matTooltip="Remove from wish list"
+                  [color]="row.isAddedToWishList ? 'warn':'primary'"
+                  [matTooltipPosition]="'above'"
+                  (click)="removeFromWishList(row,remove)">{{row.isAddedToWishList ? 'Remove' : ''}} </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+    <mat-paginator class="background-transparent" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
 
 
-<ng-template #remove>
-  <h2 mat-dialog-title>Remove from wish list?</h2>
-  <mat-dialog-content class="mat-typography">
-    <h3>Are you sure do you want to remove {{removeProductName}}</h3>
-  </mat-dialog-content>
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>Remove</button>
-  </mat-dialog-actions>
+  <ng-template #remove>
+    <h2 mat-dialog-title>Remove from wish list?</h2>
+    <mat-dialog-content class="mat-typography">
+      <h3>Are you sure do you want to remove {{removeProductName}}</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>Remove</button>
+    </mat-dialog-actions>
+  </ng-template>
+</ng-template>
+
+<ng-template [ngIf]="isLoading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>

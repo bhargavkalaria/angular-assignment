@@ -91,12 +91,12 @@ export class WishListComponent implements OnInit {
         data.isAddedToWishList = false;
       }
     });
-    this.snackBar.open(index.name + 'remove from wish list', '', {
-      horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: ['snack-success']
-    });
     this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then(result => {
+      this.snackBar.open(index.name + 'remove from wish list', '', {
+        horizontalPosition: 'right',
+        duration: 3000,
+        panelClass: ['snack-success']
+      });
       this.firebaseService.wishListItem.next(this.tempProduct);
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
@@ -110,15 +110,16 @@ export class WishListComponent implements OnInit {
   addToCart(data) {
     this.tempProduct.find(d => {
       if (d.id === data.id) {
-        d.isaddedTocart = true;
+        d.isaddedTocart = !d.isaddedTocart;
       }
     });
-    this.snackBar.open(data.name + ' added to cart', '', {
-      horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: ['snack-success']
-    });
     this.firebaseService.update(this.firebaseService.getIp(), this.tempProduct).then(result => {
+      this.snackBar.open(data.isaddedTocart ?
+        data.name + ' added to cart' : data.name + ' remove from the cart', '', {
+        horizontalPosition: 'right',
+        duration: 3000,
+        panelClass: ['snack-success']
+      });
     }).catch(error => {
       this.snackBar.open('Something went wrong', '', {
         horizontalPosition: 'right',

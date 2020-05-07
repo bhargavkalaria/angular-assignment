@@ -3,6 +3,8 @@
 
   .cart-left {
     width: 60%;
+    height: calc(100vh - 200px);
+    overflow: auto;
 
     .cart-details {
       display: flex;
