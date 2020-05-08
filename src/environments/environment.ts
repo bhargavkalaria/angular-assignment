@@ -4,16 +4,16 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
-    apiKey: 'AIzaSyDrnGkcksLsIT3vz8VPu3PVDHypzZpaqwI',
-    authDomain: 'shopping-cart-243db.firebaseapp.com',
-    databaseURL: 'https://shopping-cart-243db.firebaseio.com',
-    projectId: 'shopping-cart-243db',
-    storageBucket: 'shopping-cart-243db.appspot.com',
-    messagingSenderId: '660716797609',
-    appId: '1:660716797609:web:9b5b6b2f455ee21e1433b8',
-    measurementId: 'G-1DSTTH2D9M'
-  }
+  // firebaseConfig : {
+  //   apiKey: 'AIzaSyDrnGkcksLsIT3vz8VPu3PVDHypzZpaqwI',
+  //   authDomain: 'shopping-cart-243db.firebaseapp.com',
+  //   databaseURL: 'https://shopping-cart-243db.firebaseio.com',
+  //   projectId: 'shopping-cart-243db',
+  //   storageBucket: 'shopping-cart-243db.appspot.com',
+  //   messagingSenderId: '660716797609',
+  //   appId: '1:660716797609:web:9b5b6b2f455ee21e1433b8',
+  //   measurementId: 'G-1DSTTH2D9M'
+  // }
 };
 
 /*

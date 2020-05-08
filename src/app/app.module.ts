@@ -15,6 +15,7 @@ import {MaterialModule} from './material/material.module';
 import {BookMovieDetailsComponent} from './book-movie-details/book-movie-details.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutService } from './services/checkout.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
   ],
   providers: [
     IpService,
-    FirebaseService
+    FirebaseService,
+    CheckoutService
   ],
   bootstrap: [AppComponent]
 })
