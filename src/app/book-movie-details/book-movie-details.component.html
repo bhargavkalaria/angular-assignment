@@ -16,6 +16,7 @@
       </ng-template>
       <div class="cart-wishlist-button">
         <button mat-raised-button color="primary"
+                [disabled]="product.quantity === 0"
                 (click)="addToCart()">{{product.isaddedTocart ? 'Remove from cart' : 'Add to cart'}}</button>
         <button class="ml-10" mat-raised-button color="warn"
                 (click)="addToWishList()">{{product.isAddedToWishList ? 'Remove from wishList' : 'Add to wish List'}}

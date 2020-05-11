@@ -28,6 +28,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Add</th>
         <td mat-cell *matCellDef="let row">
           <button mat-button [color]="row.isaddedTocart ? 'warn':'primary'"
+          [disabled]="row.quantity === 0"
                   (click)="addToCart(row)">{{row.isaddedTocart ? 'Remove' : 'Add to cart'}} </button>
         </td>
       </ng-container>

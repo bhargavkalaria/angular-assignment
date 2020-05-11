@@ -23,6 +23,12 @@
       text-overflow: ellipsis;
     }
   }
+
+  @media (max-width:568px) {
+    .product-card{
+      width: 100%;
+    }
+  }
 }
 
 

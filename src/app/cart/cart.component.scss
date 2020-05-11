@@ -1,5 +1,6 @@
 .cart {
   display: flex;
+  flex-wrap: wrap;
 
   .cart-left {
     width: 60%;
@@ -35,7 +36,7 @@
 
   .cart-right {
     padding: 0 20px;
-    width: 40%;
+    width: calc(40% - 40px);
     margin: 10px 0;
     border-radius: 10px;
 
@@ -62,6 +63,12 @@
       }
     }
   }
+
+  @media (max-width:568px) {
+    .cart-left ,.cart-right{
+      width:100%;
+    }
+  }
 }
 
 .example-form {
@@ -76,5 +83,6 @@
     padding-right: 8px;
   }
 }
-
-
+.no-items{
+  text-align: center;
+}

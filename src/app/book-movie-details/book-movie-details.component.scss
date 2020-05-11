@@ -9,12 +9,18 @@
 .product-detail {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 
   .product-detail--left, .product-detail--right {
     width: 40%;
     padding: 0 20px;
   }
 
+  @media (max-width:568px) {
+    .product-detail--left, .product-detail--right {
+      width: 100%;
+    }
+  }
   .product-detail--left {
     .product-image {
       width: 350px;

@@ -52,6 +52,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout() {
+    this.tmpData.forEach(d => {
+      d.isaddedTocart = false;
+      d.quantity = d.quantity - d.buyedItems;
+      d.buyedItems = 1;
+    });
+    this.firebaseService.update(this.firebaseService.getIp(), this.tmpData);
     this.snackBar.open('Your order is placed successfully', '', {
       horizontalPosition: 'right',
       duration: 3000,

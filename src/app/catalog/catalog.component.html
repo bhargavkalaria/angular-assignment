@@ -27,8 +27,8 @@
           <button mat-button color="primary"
                   [color]="product.isAddedToWishList?'warn':'primary'"
                   (click)="addToWishList(product,i)">{{product.isAddedToWishList ? 'Remove from wishList' : 'Add to wish List'}}</button>
-          <button mat-button [color]="product.isaddedTocart?'warn':'primary'"
-                  (click)="addToCart(product,i)">{{product.isaddedTocart ? 'Remove from cart' : 'Add to cart'}}</button>
+          <button mat-button [color]="product.isaddedTocart?'warn':'primary'" *ngIf="product.quantity > 1"
+          (click)="addToCart(product,i)">{{product.isaddedTocart ? 'Remove from cart' : 'Add to cart'}}</button>
         </mat-card-actions>
       </mat-card>
     </ng-container>

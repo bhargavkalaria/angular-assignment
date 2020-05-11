@@ -1,142 +1,136 @@
 <ng-template [ngIf]="!isLoading">
-  <mat-horizontal-stepper [linear]="true" #stepper class="background-transparent">
-    <mat-step>
-      <ng-template matStepLabel>My cart</ng-template>
-      <div class="cart">
-        <div class="cart-left">
-          <ng-container *ngFor="let product of products">
-            <div class="cart-details">
-              <div class="cart-details--left">
-                <img [src]="product.image" class="cart-image">
-                <mat-form-field class="counter">
-                  <button
-                    mat-button
-                    mat-icon-button
-                    matPrefix
-                    aria-label="Remove"
-                    (click)="incrementValue(-step,product)"
-                    [disabled]="shouldDisableDecrement(value,product)">
-                    <span class="material-icons">remove</span>
+  <ng-container *ngIf="products.length > 0;else nodata">
+    <mat-horizontal-stepper [linear]="true" #stepper class="background-transparent">
+      <mat-step>
+        <ng-template matStepLabel>My cart</ng-template>
+        <div class="cart">
+          <div class="cart-left">
+            <ng-container *ngFor="let product of products">
+              <div class="cart-details">
+                <div class="cart-details--left">
+                  <img [src]="product.image" class="cart-image">
+                  <mat-form-field class="counter">
+                    <button mat-button mat-icon-button matPrefix aria-label="Remove"
+                      (click)="incrementValue(-step,product)" [disabled]="shouldDisableDecrement(value,product)">
+                      <span class="material-icons">remove</span>
+                    </button>
+                    <input matInput type="text" class="input-size" [(ngModel)]="product.buyedItems" [readonly]="true" />
+                    <button mat-button mat-icon-button matSuffix aria-label="Add" (click)="incrementValue(step,product)"
+                      [disabled]="shouldDisableIncrement(value,product)">
+                      <span class="material-icons">add</span>
+                    </button>
+                  </mat-form-field>
+                </div>
+                <div class="ml-10">
+                  <h1>{{product.name}}</h1>
+                  <h4>{{product.amount * product.buyedItems | currency:'₹'}}</h4>
+                  <button mat-raised-button color="warn" (click)="removeFromCart(product,remove)">Remove From cart
                   </button>
-                  <input matInput type="text" class="input-size" [(ngModel)]="product.buyedItems" [readonly]="true"/>
-                  <button
-                    mat-button
-                    mat-icon-button
-                    matSuffix
-                    aria-label="Add"
-                    (click)="incrementValue(step,product)"
-                    [disabled]="shouldDisableIncrement(value,product)">
-                    <span class="material-icons">add</span>
-                  </button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="cart-right">
+            <div class="cart-right--header">
+              PRICE DETAILS
+            </div>
+            <div class="cart-right--body">
+              <div class="body-price-details">
+                <div class="mt-5 mb-5">
+                  Price ({{products.length}} items)
+                </div>
+                <div>{{totalAmount | currency :'₹'}}</div>
+              </div>
+              <div class="body-price-details border-bottom">
+                <div class="mt-5 mb-5">
+                  Discount
+                </div>
+                <div>0%</div>
+              </div>
+              <div class="body-price-details">
+                <div class="mt-5 mb-5">
+                  Total amount
+                </div>
+                <div>{{totalAmount | currency :'₹'}}</div>
+              </div>
+            </div>
+            <button color="primary" mat-button matStepperNext>Next</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="userDetails">
+        <ng-template matStepLabel>Fill out your details</ng-template>
+        <form class="example-form" [formGroup]="userDetails">
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Username</mat-label>
+                  <input matInput placeholder="Ex. Bhargav" formControlName="username">
                 </mat-form-field>
-              </div>
-              <div class="ml-10">
-                <h1>{{product.name}}</h1>
-                <h4>{{product.amount * product.buyedItems | currency:'₹'}}</h4>
-                <button mat-raised-button color="warn" (click)="removeFromCart(product,remove)">Remove From cart
-                </button>
-              </div>
-            </div>
-          </ng-container>
-        </div>
-        <div class="cart-right">
-          <div class="cart-right--header">
-            PRICE DETAILS
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email id</mat-label>
+                  <input matInput placeholder="Ex. bkalaria6191@gmail.com" formControlName="email">
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Address</mat-label>
+              <textarea matInput placeholder="Ex. 100 Main St" formControlName="address"></textarea>
+            </mat-form-field>
+          </p>
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Country</mat-label>
+                  <input matInput placeholder="Ex. India" formControlName="country">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>State</mat-label>
+                  <input matInput placeholder="Ex. California" formControlName="street">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>City</mat-label>
+                  <input matInput placeholder="Ex. San Francisco" formControlName="city">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput [type]="'number'" #postalCode maxlength="6" placeholder="Ex. 94105"
+                    formControlName="zipCode">
+                  <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Upi Id</mat-label>
+              <input matInput placeholder="Ex. XXXXXXXXXX@upi" formControlName="upiId">
+            </mat-form-field>
+          </p>
+          <div>
+            <button mat-raised-button color="primary" mat-button (click)="saveDetails()">Next</button>
           </div>
-          <div class="cart-right--body">
-            <div class="body-price-details">
-              <div class="mt-5 mb-5">
-                Price ({{products.length}} items)
-              </div>
-              <div>{{totalAmount | currency :'₹'}}</div>
-            </div>
-            <div class="body-price-details border-bottom">
-              <div class="mt-5 mb-5">
-                Discount
-              </div>
-              <div>0%</div>
-            </div>
-            <div class="body-price-details">
-              <div class="mt-5 mb-5">
-                Total amount
-              </div>
-              <div>{{totalAmount | currency :'₹'}}</div>
-            </div>
-          </div>
-          <button color="primary" mat-button matStepperNext>Next</button>
-        </div>
-      </div>
-    </mat-step>
-    <mat-step [stepControl]="userDetails">
-      <ng-template matStepLabel>Fill out your details</ng-template>
-      <form class="example-form" [formGroup]="userDetails">
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="Ex. Bhargav" formControlName="username">
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                <mat-label>Email id</mat-label>
-                <input matInput placeholder="Ex. bkalaria6191@gmail.com" formControlName="email">
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
-
-        <p>
-          <mat-form-field class="example-full-width">
-            <mat-label>Address</mat-label>
-            <textarea matInput placeholder="Ex. 100 Main St" formControlName="address"></textarea>
-          </mat-form-field>
-        </p>
-
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <mat-label>Country</mat-label>
-                <input matInput placeholder="Ex. India" formControlName="country">
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                <mat-label>State</mat-label>
-                <input matInput placeholder="Ex. California" formControlName="street">
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                <mat-label>City</mat-label>
-                <input matInput placeholder="Ex. San Francisco" formControlName="city">
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                <mat-label>Postal Code</mat-label>
-                <input matInput [type]="'number'" #postalCode maxlength="6" placeholder="Ex. 94105"
-                       formControlName="zipCode">
-                <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
-        <p>
-          <mat-form-field class="example-full-width">
-            <mat-label>Upi Id</mat-label>
-            <input matInput placeholder="Ex. XXXXXXXXXX@upi" formControlName="upiId">
-          </mat-form-field>
-        </p>
-        <div>
-          <button mat-raised-button color="primary" mat-button (click)="saveDetails()">Next</button>
-        </div>
-      </form>
-    </mat-step>
-  </mat-horizontal-stepper>
-
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </ng-container>
+  <ng-template #nodata>
+    <h3 class="no-items">No items in cart</h3>
+  </ng-template>
   <ng-template #remove>
     <h2 mat-dialog-title>Remove from wish list?</h2>
     <mat-dialog-content class="mat-typography">

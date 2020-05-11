@@ -84,7 +84,6 @@ export class CartComponent implements OnInit {
           inputValue = this.wrappedValue(inputValue);
         }
         d.buyedItems = inputValue;
-        d.quantity = 10 - d.buyedItems;
       }
     });
     this.tmpData.filter(price => {
@@ -113,7 +112,7 @@ export class CartComponent implements OnInit {
   }
 
   shouldDisableIncrement(inputValue: number, data): boolean {
-    return !this.wrap && data.buyedItems >= this.max;
+    return !this.wrap && data.buyedItems >= data.quantity;
   }
 
   removeFromCart(product, templateRef) {
